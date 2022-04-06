@@ -4,6 +4,7 @@ import * as ecs from '@aws-cdk/aws-ecs';
 import * as ecsp from '@aws-cdk/aws-ecs-patterns';
 import * as acm from '@aws-cdk/aws-certificatemanager';
 import * as route53 from "@aws-cdk/aws-route53";
+import { ApplicationProtocol } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 
 export class AwsAlbEcsSslBadcertStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -24,11 +25,12 @@ export class AwsAlbEcsSslBadcertStack extends Stack {
 
     new ecsp.ApplicationLoadBalancedFargateService(this, 'MyWebServer', {
       taskImageOptions: {
-        image: ecs.ContainerImage.fromRegistry('amazon/amazon-ecs-sample'),
+        image: ecs.ContainerImage.fromAsset('docker'),
       },
       domainName: domainName,
       domainZone: hostedZone,
       certificate: cert,
+      targetProtocol: ApplicationProtocol.HTTPS,
       publicLoadBalancer: true
     });
   }
