@@ -15,7 +15,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ## How to Deploy
 
-1. Run `cdk bootstrap aws://{AWS_ACCOUNT_ID}/ap-northeast-1`
+1. Run `cdk bootstrap aws://{AWS_ACCOUNT_ID}/ap-northeast-1` (First time only)
 
     e.g. `cdk bootstrap aws://123456789012/ap-northeast-1`
 
