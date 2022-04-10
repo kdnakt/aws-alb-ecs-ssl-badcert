@@ -25,11 +25,8 @@ export class AwsAlbEcsSslBadcertStack extends Stack {
 
     new ecsp.ApplicationLoadBalancedFargateService(this, 'MyWebServer', {
       taskImageOptions: {
-        image: ecs.ContainerImage.fromAsset('docker', {
-          buildArgs: {
-            '--platform': 'linux/amd64'
-          }
-        }),
+        image: ecs.ContainerImage.fromAsset('docker'),
+        containerPort: 443,
       },
       domainName: domainName,
       domainZone: hostedZone,
