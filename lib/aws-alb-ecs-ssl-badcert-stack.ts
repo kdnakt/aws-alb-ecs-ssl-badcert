@@ -26,6 +26,8 @@ export class AwsAlbEcsSslBadcertStack extends Stack {
     new ecsp.ApplicationLoadBalancedFargateService(this, 'MyWebServer', {
       taskImageOptions: {
         image: ecs.ContainerImage.fromAsset('docker'),
+        // Seems like no way to pass `platform` option here...
+        // cf. https://github.com/aws/aws-cdk/issues/12472
         containerPort: 443,
       },
       domainName: domainName,
